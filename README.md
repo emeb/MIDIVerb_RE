@@ -26,4 +26,4 @@ I spent some time preparing a [slide deck](./docs/MV_Slides.pdf) that gave a hig
 
 ## Schematics
 
-The schematics consist of the digital and analog/power sections and can be found in the [schematics](./schematics) directory where they are available both in Diptrace .dch format as well as a [PDF file](./schematics/MIDVerb_Schematic.pdf) combining both.
+The schematics consist of the digital and analog/power sections and can be found in the [schematics](./schematics) directory where they are available both in Diptrace .dch format as well as a [PDF file](./schematics/MIDIVerb_Schematic.pdf) combining both.
