@@ -1,0 +1,23 @@
+* Z:\home\ericb\Engineering\MOTM\motm\mvop\spice\MV_AA_Filter.asc
+R1 N005 N009 10k
+Vin N009 0 SINE(0 7 10000 0 0 0 10) AC 1
+XU2 N010 N006 N001 N011 N006 level.2 Avol=1Meg GBW=10Meg Slew=10Meg ilimit=25m rail=0 Vos=0 phimargin=45 en=0 enk=0 in=0 ink=0 Rin=500Meg
+V3 N001 0 12
+V4 N011 0 -12
+C1 N005 N006 0.01µf
+C2 N010 0 3300pf
+R2 N010 N005 5.1k
+R3 N003 N006 10k
+XU1 N008 N004 N001 N011 N004 level.2 Avol=1Meg GBW=10Meg Slew=10Meg ilimit=25m rail=0 Vos=0 phimargin=45 en=0 enk=0 in=0 ink=0 Rin=500Meg
+C3 N003 N004 0.01µf
+C4 N008 0 330pf
+R4 N008 N003 10k
+R5 N002 N004 4.7k
+XU3 N007 Vout N001 N011 Vout level.2 Avol=1Meg GBW=10Meg Slew=10Meg ilimit=25m rail=0 Vos=0 phimargin=45 en=0 enk=0 in=0 ink=0 Rin=500Meg
+C5 N002 Vout 0.047µf
+C6 N007 0 220pf
+R6 N007 N002 4.7k
+.ac oct 10 10 100k
+.lib UniversalOpamps2.sub
+.backanno
+.end

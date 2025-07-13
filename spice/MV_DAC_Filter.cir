@@ -1,0 +1,15 @@
+* Z:\home\ericb\Engineering\MOTM\motm\mvop\spice\MV_DAC_Filter.asc
+R1 N002 N004 6.8k
+Vin N003 0 SINE(0 7 10000 0 0 0 10) AC 1
+XU2 N005 Vout N001 N006 Vout level.2 Avol=1Meg GBW=10Meg Slew=10Meg ilimit=25m rail=0 Vos=0 phimargin=45 en=0 enk=0 in=0 ink=0 Rin=500Meg
+V3 N001 0 12
+V4 N006 0 -12
+C1 N002 Vout 3300pf
+C2 N005 0 1500pf
+R2 N005 N002 6.8k
+R3 N004 N003 1000
+C3 N004 0 1500pf
+.ac oct 10 10 100k
+.lib UniversalOpamps2.sub
+.backanno
+.end

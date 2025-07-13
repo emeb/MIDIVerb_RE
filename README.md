@@ -52,6 +52,10 @@ The MIDIVerb emulator discussed above is implemented as an interpreter that scan
 
 A Verilog HDL (hardware description language) implementation of the MIDIVerb has been built and tested in several different FPGA platforms. Source code for that is provided in the `verilog` directory. Note that it relies on a ROM dump in Verilog hex format in the file `u51.hex`.
 
+## SPICE
+
+SPICE models of the MIDIVerb input and output analog filters are provided in the `spice` directory. 
+
 ## Newer Versions
 
 After the original MIDIVerb there were other versions produced:
