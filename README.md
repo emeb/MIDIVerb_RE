@@ -27,3 +27,27 @@ I spent some time preparing a [slide deck](./docs/MV_Slides.pdf) that gave a hig
 ## Schematics
 
 The schematics consist of the digital and analog/power sections and can be found in the [schematics](./schematics) directory where they are available both in Diptrace .dch format as well as a [PDF file](./schematics/MIDIVerb_Schematic.pdf) combining both.
+
+## Code
+
+The code that resulted from this reverse engineering effort falls into several categories:
+
+#### ROMs
+
+The EPROM dumps from the MIDIVerb and MIDIFex are not provided in this repository but may be found elsewhere. The source code assumes that the MIDIVerb dump is named "midifverb.bin" and the MIDIFex dump is named "midifex.bin".
+
+#### Analysis
+
+A "disassembler" named `parse_ucode.c` assists in analysis of the individual DSP algorithms. It removes pipeline offsets between instructions and address offsets and provides comments to help decipher the program flow. It also provides a list of buffer regions used by the algorithm.
+
+#### Emulator
+
+The core emulator code is contained in the file `midiverb.c` and needs to be provided with a pointer into an array containing the depipelined microcode. Depipelining and formatting is handled by `mk_mvucode.c` which is given the name of a binary file containing the microcode and generates a C header with the array definition. To test the emulator with a ROM dump binary from the command line the `sim_ucode.c` is provided, and to test with a prepared microcode header the `sim_midiverb.c` program is used. An additional utility vec_midiverb.c is provided that can be used to generate formatted test vectors for Verilog hardware implementations. All of these may be built using the included `Makefile`. 
+
+#### Compiler
+
+The MIDIVerb emulator discussed above is implemented as an interpreter that scans through a pre-formatted binary array of instructions and address offsets to execute the DSP algorithms. This has a fairly high execution cost and will easily swamp the resources of low-performance microcontrollers. To accelerate performance for low-spec processors it is necessary to "compile" the algorithms, reducing the overhead of array scanning and instruction interpretation. For this purpose I've created `mv_gencode.c` which converts MIDIVerb ROM dumps into optimized C code that can be further compiled to target microcontrollers. The C code result of this process can be tested with `sim_mvprogs.c` and compared to the emulator output with `tst_mvprogs.c` to check for execution errors. All these require an `mv_ucode.h` header file containing the pre-formatted array of microcode as described in the previous Emulator section.
+
+
+
+ 

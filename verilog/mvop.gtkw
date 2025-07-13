@@ -1,0 +1,36 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Jul 28 23:23:33 2021
+[*]
+[dumpfile] "/home/ericb/MOTM/motm/mvop/verilog/mvop.vcd"
+[dumpfile_mtime] "Tue Jul 27 22:23:01 2021"
+[dumpfile_size] 470242
+[savefile] "/home/ericb/MOTM/motm/mvop/verilog/mvop.gtkw"
+[timestart] 40772000
+[size] 1542 612
+[pos] -1 -1
+*-19.420971 42997000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mvop.
+[sst_width] 217
+[signals_width] 157
+[sst_expanded] 1
+[sst_vpaned_height] 148
+@22
+mvop.mode_a[7:0]
+@29
+mvop.clk
+@28
+mvop.mode_rco_dly
+mvop.nras
+mvop.ncas
+mvop.ndram_wr
+mvop.nclr_acc
+mvop.nrd_r0
+mvop.nrd_r1
+@22
+mvop.dram_addr[7:0]
+mvop.dsp_dd[7:0]
+@28
+mvop.instr[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
