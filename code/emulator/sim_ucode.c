@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 		iname = argv[3];
 	
 	if(argc > 4)
-		iname = argv[4];
+		oname = argv[4];
 	
 	/* load a program and analyze */
 	if(!(ufile = fopen(uname, "rb")))

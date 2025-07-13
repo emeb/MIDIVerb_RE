@@ -42,7 +42,7 @@ A "disassembler" named `parse_ucode.c` assists in analysis of the individual DSP
 
 #### Emulator
 
-The core emulator code is contained in the file `midiverb.c` and needs to be provided with a pointer into an array containing the depipelined microcode. Depipelining and formatting is handled by `mk_mvucode.c` which is given the name of a binary file containing the microcode and generates a C header with the array definition. To test the emulator with a ROM dump binary from the command line the `sim_ucode.c` is provided, and to test with a prepared microcode header the `sim_midiverb.c` program is used. An additional utility vec_midiverb.c is provided that can be used to generate formatted test vectors for Verilog hardware implementations. All of these may be built using the included `Makefile`. 
+The core emulator code is contained in the file `midiverb.c` and needs to be provided with a pointer into an array containing the depipelined microcode. Depipelining and formatting is handled by `mk_mvucode.c` which is given the name of a binary file containing the microcode and generates a C header with the array definition. To test the emulator with a ROM dump binary from the command line the `sim_ucode.c` is provided, and to test with a prepared microcode header the `sim_midiverb.c` program is used. An additional utility `vec_midiverb.c` is provided that can be used to generate formatted test vectors for Verilog hardware implementations. All of these may be built using the included `Makefile`. 
 
 #### Compiler
 
@@ -69,13 +69,3 @@ After the original MIDIVerb there were other versions produced:
 ## Other Resources
 
 Another command-line emulator can be found here: [MIDIVerb Emulator](https://github.com/thement/midiverb_emulator) which was independently developed based on information gleaned from Paul's Youtube videos.
-
-
-
-
-
-
-
-
-
- 
