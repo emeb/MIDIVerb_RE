@@ -34,7 +34,7 @@ The code that resulted from this reverse engineering effort falls into several c
 
 #### ROMs
 
-The EPROM dumps from the MIDIVerb and MIDIFex are not provided in this repository but may be found elsewhere. The source code assumes that the MIDIVerb dump is named "midifverb.bin" and the MIDIFex dump is named "midifex.bin".
+For copyright reasons, the EPROM dumps from the MIDIVerb and MIDIFex are not provided in this repository but may be found elsewhere. The source code assumes that the MIDIVerb dump is named "midifverb.bin" and the MIDIFex dump is named "midifex.bin".
 
 #### Analysis
 
@@ -47,6 +47,30 @@ The core emulator code is contained in the file `midiverb.c` and needs to be pro
 #### Compiler
 
 The MIDIVerb emulator discussed above is implemented as an interpreter that scans through a pre-formatted binary array of instructions and address offsets to execute the DSP algorithms. This has a fairly high execution cost and will easily swamp the resources of low-performance microcontrollers. To accelerate performance for low-spec processors it is necessary to "compile" the algorithms, reducing the overhead of array scanning and instruction interpretation. For this purpose I've created `mv_gencode.c` which converts MIDIVerb ROM dumps into optimized C code that can be further compiled to target microcontrollers. The C code result of this process can be tested with `sim_mvprogs.c` and compared to the emulator output with `tst_mvprogs.c` to check for execution errors. All these require an `mv_ucode.h` header file containing the pre-formatted array of microcode as described in the previous Emulator section.
+
+## Verilog
+
+A Verilog HDL (hardware description language) implementation of the MIDIVerb has been built and tested in several different FPGA platforms. Source code for that is provided in the `verilog` directory. Note that it relies on a ROM dump in Verilog hex format in the file `u51.hex`.
+
+## Newer Versions
+
+After the original MIDIVerb there were other versions produced:
+
+- MIDIFex - basically the same hardware as the MIDIVerb but with a different microcode EPROM containing additional effects. MIDIFex microcode will run correctly on MIDIVerb hardware and the emulator/compiler provided here.
+
+- MIDIVerb II - similar DSP architecture but with much of the digital logic subsumed into a custom ASIC. The DSP microcode executes from a dual-port RAM allowing the 8031 MCU to alter the program in realtime to provide additional modulation opportunities. Some MIDIVerb II algorithms can be executed by the emulator & compiler here, but those which require intervention by the 8031 will not operate properly.
+
+- MIDIVerb 3 & 4 - more advanced hardware that hasn't been examined further.
+
+## Other Resources
+
+Another command-line emulator can be found here: [MIDIVerb Emulator](https://github.com/thement/midiverb_emulator) which was independently developed based on information gleaned from Paul's Youtube videos.
+
+
+
+
+
+
 
 
 
