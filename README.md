@@ -71,3 +71,5 @@ After the original MIDIVerb there were other versions produced:
 Another command-line emulator can be found here: [MIDIVerb Emulator](https://github.com/thement/midiverb_emulator) which was independently developed based on information gleaned from Paul's Youtube videos.
 
 I've designed and built hardware to run the compiled MIDIVerb code in a small (6HP) Eurorack module. Find out more about it here: [g081_audio](https://github.com/emeb/g081_audio)
+
+A set of audio plugins for Jack, LV2, VST2 and VST3 based on this can be found here: [BarrVerb](https://github.com/ErroneousBosh/BarrVerb)
