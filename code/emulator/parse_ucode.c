@@ -64,7 +64,8 @@ int main(int argc, char **argv)
 	FILE *file;
 	int i, base;
 	uint8_t rom[256];
-	uint16_t microcode[128], instr, op, addr, asum = 0;
+	uint16_t microcode[128], instr, op, addr, op_buf[128], addr_buf[128],
+		asum = 0;
 	uint32_t wsb[16384], rsb[16384], samples;
 	
 	/* override defaults */
@@ -124,9 +125,14 @@ int main(int argc, char **argv)
 			
 			/* raw data */
 			op = microcode[(i-1)&0x7f] >> 14; // op comes from previous instr
-			addr = microcode[i]&0xf3fff;		
+			addr = microcode[i]&0xf3fff;			
 			fprintf(stdout, "%1d 0x%04X   ", op, addr);
 			
+			/* save op, addr in history buf for macro parsing */
+			op_buf[i] = op;
+			addr_buf[i] = asum;
+			//fprintf(stdout, "### %2d %04X\n", op_buf[i], addr_buf[i]);
+
 			/* decode instruction */
 			fprintf(stdout, "%s ", mnemonic[op]);
 			
@@ -181,6 +187,27 @@ int main(int argc, char **argv)
 						
 			fprintf(stdout, "\n");
 			asum = (asum + addr)&0x3fff;
+			
+			/* search for ap macro */
+			if(i>2)
+			{
+				int ap_addr_begin = addr_buf[i-3], ap_addr_end;
+				
+				if(op_buf[i-3] == 0)
+				{
+					if(op_buf[i-2] == 3)
+					{
+						ap_addr_end = addr_buf[i-2];
+						if((op_buf[i-1] == 0) && (addr_buf[i-1] == ap_addr_begin))
+						{
+							if((op_buf[i] == 0) && (addr_buf[i] == ap_addr_begin))
+							{
+								fprintf(stdout, "; Allpass, len = %d\n", ap_addr_end - ap_addr_begin);
+							}
+						}
+					}
+				}
+			}
 		}
 		samples++;
 	}
