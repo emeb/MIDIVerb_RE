@@ -73,3 +73,6 @@ Another command-line emulator can be found here: [MIDIVerb Emulator](https://git
 I've designed and built hardware to run the compiled MIDIVerb code in a small (6HP) Eurorack module. Find out more about it here: [g081_audio](https://github.com/emeb/g081_audio)
 
 A set of audio plugins for Jack, LV2, VST2 and VST3 based on this can be found here: [BarrVerb](https://github.com/ErroneousBosh/BarrVerb)
+
+A MAME emulator of the MIDIVerb and MIDIFex was created based on Paul's videos. Source is here: [MAME MIDIVerb emulation](https://github.com/mamedev/mame/tree/master/src/mame/alesis)
+
